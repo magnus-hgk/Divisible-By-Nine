@@ -68,32 +68,28 @@ int numberOfDigits(int n) // Find out how many digits are in a given number
 int main(void)
 {
 
-    int iterations, number_of_digits, tmp;
-    printf("Input number of iterations: ");
-    scanf("\n %d", &iterations);
+    int number, number_of_digits;
+    printf("Input number to test: ");
+    scanf("\n %d", &number);
     
 
-    for (int i = 10; i <= iterations + 10; i++)
+    number_of_digits = numberOfDigits(number);
+    int num_array[number_of_digits];
+    printf("%d ", number);
+    for (int j = 0; j < number_of_digits; j++)
     {
-        tmp = i;
-        number_of_digits = numberOfDigits(i);
-        int num_array[number_of_digits];
-        printf("%d ", i);
-        for (int j = 0; j < number_of_digits; j++)
-        {
-            num_array[j] = digitInNumber(i, j, number_of_digits);
-            tmp -= num_array[j];
-            printf("- %d ", num_array[j]);
-        }
-        printf("= %d ", tmp);
-        tmp = tmp % 9;
-        if (tmp == 0)
-        {
-            printf("is divisible by 9\n");
-        } else {
-            
-            printf("is not divisble by 9\n");
-        }
+        num_array[j] = digitInNumber(number, j, number_of_digits);
+        number -= num_array[j];
+        printf("- %d ", num_array[j]);
+    }
+
+    number = number % 9;
+    if (number == 0)
+    {
+        printf("is divisible by 9\n");
+    } else {
+        
+        printf("is not divisble by 9\n");
     }
 
     return 0;
